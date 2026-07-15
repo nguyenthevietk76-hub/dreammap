@@ -1,0 +1,350 @@
+.pageContainer {
+  width: 100vw;
+  /* overflow-x hidden to prevent horizontal scroll */
+  overflow-x: hidden;
+  color: var(--color-text-main);
+  /* Nav height offset not strictly needed if we want full screen hero, but we might want padding */
+  position: relative;
+  z-index: 10;
+}
+
+/* Scroll Progress Indicator */
+.progressBarContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 9999;
+}
+
+.progressBar {
+  height: 100%;
+  background: var(--color-gold);
+  width: 0%;
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 10px var(--color-gold);
+}
+
+/* Base Section Styles */
+.section {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* When IntersectionObserver fires */
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    transition: none;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero Section (Chương 1) */
+.heroSection {
+  background-color: var(--color-bg-main);
+}
+
+.heroImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.heroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(11, 18, 41, 0.3) 0%, rgba(11, 18, 41, 0.9) 100%);
+  z-index: 2;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 2rem;
+  margin-top: 20vh; /* Push down a bit */
+}
+
+.heroText {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--color-gold);
+  text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-muted);
+  animation: bounce 2s infinite;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+  40% { transform: translateY(-10px) translateX(-50%); }
+  60% { transform: translateY(-5px) translateX(-50%); }
+}
+
+/* Split Section (Chương 2) */
+.splitContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 4rem;
+  padding: 6rem 2rem;
+}
+
+@media (min-width: 768px) {
+  .splitContainer {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.splitImage {
+  flex: 1;
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.splitImage img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  display: block;
+}
+
+.splitText {
+  flex: 1;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--color-text-main);
+}
+
+.splitText p {
+  margin-bottom: 2rem;
+}
+
+.highlightText {
+  font-size: 1.5rem;
+  color: var(--color-cyan);
+  font-weight: 600;
+  font-family: var(--font-heading);
+}
+
+/* Pull Quote Section (Chương 3) */
+.quoteSection {
+  background-color: transparent; /* Let stars show */
+  padding: 8rem 2rem;
+}
+
+.quoteContent {
+  max-width: 900px;
+  text-align: center;
+}
+
+.pullQuote {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.3;
+  color: #fff;
+  position: relative;
+}
+
+.pullQuote::before, .pullQuote::after {
+  content: '"';
+  color: var(--color-gold);
+  opacity: 0.5;
+  font-size: 1.5em;
+  position: absolute;
+  top: -0.2em;
+}
+
+.pullQuote::before {
+  left: -0.5em;
+}
+
+.pullQuote::after {
+  right: -0.5em;
+}
+
+/* Idea Section (Chương 4) */
+.ideaContent {
+  max-width: 800px;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.ideaImage {
+  width: 100%;
+  border-radius: var(--radius-md);
+  margin: 3rem 0;
+  box-shadow: 0 10px 30px rgba(6, 214, 160, 0.2);
+  border: 1px solid rgba(6, 214, 160, 0.3);
+}
+
+/* Dream Section (Chương 5) */
+.dreamSection {
+  position: relative;
+  background-color: rgba(11, 18, 41, 0.8);
+}
+
+.dreamContent {
+  max-width: 800px;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  z-index: 2;
+}
+
+.handwritingCard {
+  background: #fdfaf6;
+  color: #2c3e50;
+  padding: 3rem;
+  border-radius: 4px;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.05), 0 10px 30px rgba(0,0,0,0.5);
+  transform: rotate(-1deg);
+  border-left: 5px solid #dcdde1; /* paper binding illusion */
+}
+
+.handwritingText {
+  font-family: 'Itim', cursive;
+  font-size: 2.5rem;
+  line-height: 1.5;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.mentorCard {
+  background: rgba(6, 214, 160, 0.05);
+  border: 1px solid rgba(6, 214, 160, 0.2);
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  position: relative;
+}
+
+.mentorBadge {
+  position: absolute;
+  top: -1rem;
+  left: 2.5rem;
+  background: var(--color-cyan);
+  color: #000;
+  font-weight: 700;
+  padding: 0.25rem 1rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+}
+
+/* Journey Section (Chương 6) */
+.journeySection {
+  text-align: center;
+  padding: 6rem 2rem;
+  position: relative;
+}
+
+.journeyMapBg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120vw;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.journeyText {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* CTA Section (Chương 7) */
+.ctaSection {
+  min-height: 60vh;
+}
+
+.glassCardCta {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-lg);
+  padding: 4rem 3rem;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  max-width: 800px;
+  width: 90%;
+}
+
+.ctaTitle {
+  font-size: 2.5rem;
+  font-family: var(--font-heading);
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.ctaSubtitle {
+  color: var(--color-text-muted);
+  font-size: 1.125rem;
+  margin-bottom: 3rem;
+}
+
+.btnGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+@media (min-width: 600px) {
+  .btnGroup {
+    flex-direction: row;
+  }
+}

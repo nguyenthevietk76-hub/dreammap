@@ -1,0 +1,168 @@
+.adminPage {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--color-bg-darker);
+  padding-top: 4rem; /* For navbar */
+  position: relative;
+  z-index: 10;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: rgba(11, 18, 41, 0.8);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar h2 {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+  color: var(--color-gold);
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar button {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  transition: all 0.2s;
+  background: transparent;
+}
+
+.sidebar button:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--color-text-main);
+}
+
+.sidebar button.activeTab {
+  background-color: rgba(6, 214, 160, 0.1);
+  color: var(--color-cyan-glow);
+  border: 1px solid rgba(6, 214, 160, 0.2);
+}
+
+.content {
+  flex: 1;
+  padding: 2rem 3rem;
+  overflow-y: auto;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.header h1 {
+  color: var(--color-text-main);
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.emptyState {
+  color: var(--color-text-muted);
+  font-style: italic;
+  padding: 2rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-md);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.dreamCard {
+  background-color: var(--color-glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-glass);
+  border: 1px solid var(--color-glass-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dreamCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.dreamInfo {
+  flex: 1;
+}
+
+.dreamText {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-main);
+}
+
+.dreamMeta {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.approveBtn, .rejectBtn, .assignBtn {
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.approveBtn:hover, .rejectBtn:hover, .assignBtn:hover {
+  transform: translateY(-2px);
+}
+
+.approveBtn {
+  background-color: rgba(6, 214, 160, 0.15);
+  color: var(--color-cyan-glow);
+  border: 1px solid rgba(6, 214, 160, 0.3);
+}
+
+.approveBtn:hover {
+  background-color: rgba(6, 214, 160, 0.25);
+  box-shadow: 0 0 10px rgba(6, 214, 160, 0.2);
+}
+
+.rejectBtn {
+  background-color: rgba(239, 71, 111, 0.15);
+  color: var(--color-pink-glow);
+  border: 1px solid rgba(239, 71, 111, 0.3);
+}
+
+.rejectBtn:hover {
+  background-color: rgba(239, 71, 111, 0.25);
+  box-shadow: 0 0 10px rgba(239, 71, 111, 0.2);
+}
+
+.assignBtn {
+  background: linear-gradient(135deg, #F4B942, #E29B16);
+  color: #0B1229;
+  border: none;
+}
+
+.assignBtn:hover {
+  box-shadow: 0 0 15px rgba(244, 185, 66, 0.4);
+}

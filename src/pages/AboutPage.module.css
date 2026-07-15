@@ -1,0 +1,371 @@
+.aboutPage {
+  padding: 8rem 2rem 4rem; /* top offset for fixed navbar */
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  color: var(--color-text-main);
+  display: flex;
+  flex-direction: column;
+  gap: 8rem; /* Wide padding between sections */
+}
+
+@media (max-width: 768px) {
+  .aboutPage {
+    gap: 5rem;
+    padding: 6rem 1rem 3rem;
+  }
+}
+
+/* SECTION 1: HERO */
+.heroSection {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  color: var(--dm-crystal-cyan);
+  margin-bottom: 2rem;
+  font-weight: 500;
+  font-family: var(--font-heading);
+}
+
+.heroDesc {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--color-text-main);
+}
+
+/* SECTION 2: MISSION & VISION */
+.missionVisionGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .missionVisionGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.missionCard {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-glass-border);
+  padding: 3rem 2.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glass);
+}
+
+.cardTitle {
+  font-size: 1.75rem;
+  color: var(--dm-crystal-pink);
+  margin-bottom: 1.5rem;
+  font-family: var(--font-heading);
+}
+
+.cardText {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--color-text-main);
+}
+
+/* SECTION 3: HOW IT WORKS */
+.sectionTitle {
+  text-align: center;
+  font-size: 2.25rem;
+  color: var(--color-text-main);
+  margin-bottom: 3.5rem;
+  font-family: var(--font-heading);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .timeline {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  
+  /* Horizontal line connecting timeline steps */
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 50px; /* Aligned with icon center */
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--dm-crystal-blue), var(--dm-crystal-pink), var(--dm-crystal-cyan));
+    opacity: 0.2;
+    z-index: 0;
+  }
+}
+
+.stepNode {
+  flex: 1;
+  text-align: center;
+  background: rgba(10, 14, 39, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 2.5rem 1.5rem;
+  border-radius: var(--radius-md);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stepIconContainer {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--color-bg-darker);
+  border: 2px solid var(--dm-crystal-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dm-crystal-cyan);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 15px rgba(127, 212, 232, 0.2);
+  position: relative;
+}
+
+.stepNumber {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: var(--dm-crystal-purple);
+  color: var(--dm-crystal-white);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(155, 127, 212, 0.5);
+}
+
+.stepTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--dm-crystal-white);
+  font-family: var(--font-heading);
+}
+
+.stepDesc {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* SECTION 4: CORE VALUES */
+.valuesGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 640px) {
+  .valuesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .valuesGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.valueCard {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-glass-border);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glass);
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.valueCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--dm-crystal-pink);
+}
+
+.valueIcon {
+  color: var(--dm-crystal-pink);
+  margin-bottom: 1.5rem;
+}
+
+.valueTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--dm-crystal-white);
+  font-family: var(--font-heading);
+}
+
+.valueDesc {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* SECTION 5: IMPACT */
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .metricsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.metricCard {
+  background: rgba(10, 14, 39, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-glass);
+}
+
+.metricValue {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--dm-crystal-purple);
+  margin-bottom: 0.5rem;
+  font-family: var(--font-heading);
+  text-shadow: 0 0 15px rgba(155, 127, 212, 0.3);
+}
+
+.metricLabel {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+/* SECTION 6: STORY */
+.storyLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .storyLayout {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.storyQuote {
+  font-size: 1.5rem;
+  line-height: 1.8;
+  color: var(--dm-crystal-white);
+  font-style: italic;
+  font-weight: 500;
+  border-left: 4px solid var(--dm-crystal-cyan);
+  padding-left: 2rem;
+}
+
+.storyText {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+}
+
+/* FOUNDER IMAGE SECTION 6 */
+.founderImageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-glass);
+  border: 1px solid var(--color-glass-border);
+}
+
+.founderImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.founderPlaceholder {
+  display: none; /* Only show when image fails to load */
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: inherit;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  font-family: var(--font-heading);
+  padding: 2rem;
+  text-align: center;
+}
+
+/* SECTION 9: CTA */
+.ctaPanel {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-lg);
+  padding: 4rem 3rem;
+  text-align: center;
+  box-shadow: var(--shadow-glass);
+}
+
+.ctaTitle {
+  font-size: 2.25rem;
+  font-family: var(--font-heading);
+  color: var(--dm-crystal-white);
+  margin-bottom: 1rem;
+}
+
+.ctaDesc {
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+.btnGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+@media (min-width: 600px) {
+  .btnGroup {
+    flex-direction: row;
+  }
+}
+
+/* FOOTER NOTE */
+.footerNote {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 2rem;
+  margin-top: -2rem; /* Pull closer to CTA */
+}

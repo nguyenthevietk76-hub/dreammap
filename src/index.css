@@ -1,0 +1,241 @@
+:root {
+  /* Cosmic Theme Colors */
+  --color-bg-dark: #0e1435;      /* --dm-bg-deep */
+  --color-bg-darker: #161e3f;    /* --dm-bg-mid */
+  --color-bg-lighter: #212852;   /* --dm-bg-navy */
+  
+  --color-gold: #e8a4c9;         /* mapped to crystal pink */
+  --color-gold-glow: rgba(232, 164, 201, 0.4);
+  --color-cyan: #7fd4e8;         /* mapped to crystal cyan */
+  --color-cyan-glow: rgba(127, 212, 232, 0.4);
+  --color-pink: #9b7fd4;         /* mapped to crystal purple */
+  --color-pink-glow: rgba(155, 127, 212, 0.4);
+  
+  --color-text-main: #F6EFE1; /* Warm ivory white */
+  --color-text-muted: #A0AEC0;
+  
+  --color-glass-bg: rgba(33, 40, 77, 0.5);
+  --color-glass-border: rgba(255, 255, 255, 0.12);
+  --color-glass-border-glow: rgba(155, 127, 212, 0.35);
+
+  /* Iridescent/Crystal Palette */
+  --dm-bg-deep: #0e1435;
+  --dm-bg-mid: #161e3f;
+  --dm-bg-navy: #212852;
+  --dm-crystal-blue: #4d8fd6;
+  --dm-crystal-purple: #9b7fd4;
+  --dm-crystal-pink: #e8a4c9;
+  --dm-crystal-cyan: #7fd4e8;
+  --dm-crystal-white: #ffffff;
+
+  /* Typography */
+  --font-heading: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-handwriting: 'Caveat', cursive;
+
+  /* Layout & Shadows */
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --shadow-glow: 0 0 15px rgba(232, 164, 201, 0.4);
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  color: var(--color-text-main);
+  background: radial-gradient(ellipse at top, var(--dm-bg-navy), var(--dm-bg-deep) 70%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Starfield overlay on body */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+    radial-gradient(1px 1px at 90px 120px, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 160px 60px, #fff, transparent),
+    radial-gradient(1px 1px at 230px 180px, #fff, transparent);
+  background-repeat: repeat;
+  background-size: 250px 250px;
+  opacity: 0.5;
+  animation: twinkle 4s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.35; }
+  to { opacity: 0.7; }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-text-main);
+  margin-top: 0;
+}
+
+h1, .dm-title-crystal, .text-gold {
+  font-weight: 800;
+}
+
+h2, h3 {
+  font-weight: 700;
+}
+
+button, .btn-primary, .btn-secondary, label {
+  font-weight: 600;
+}
+
+/* Crystal title shimmer */
+h1, .dm-title-crystal {
+  background: linear-gradient(
+    135deg,
+    var(--dm-crystal-blue),
+    var(--dm-crystal-purple),
+    var(--dm-crystal-pink),
+    var(--dm-crystal-cyan)
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  animation: shimmer 6s ease infinite;
+}
+
+/* Logo active shimmer */
+.text-gold {
+  background: linear-gradient(
+    135deg,
+    var(--dm-crystal-blue),
+    var(--dm-crystal-purple),
+    var(--dm-crystal-pink),
+    var(--dm-crystal-cyan)
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  animation: shimmer 6s ease infinite;
+  display: inline-block;
+}
+
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+p {
+  line-height: 1.6;
+}
+
+a {
+  color: var(--dm-crystal-cyan);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-text-main);
+  text-shadow: 0 0 8px rgba(127, 212, 232, 0.6);
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Base Components */
+.glass-panel {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-glass);
+}
+
+/* Crystal glowing primary button */
+.btn-primary {
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  padding: 0.75rem 2rem;
+  background:
+    linear-gradient(var(--dm-bg-navy), var(--dm-bg-navy)) padding-box,
+    linear-gradient(135deg, var(--dm-crystal-blue), var(--dm-crystal-pink)) border-box;
+  color: var(--dm-crystal-white) !important;
+  box-shadow: 0 0 20px rgba(155, 127, 212, 0.35);
+  font-weight: 800;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 25px rgba(127, 212, 232, 0.6);
+  transform: translateY(-2px);
+  background:
+    linear-gradient(var(--dm-bg-mid), var(--dm-bg-mid)) padding-box,
+    linear-gradient(135deg, var(--dm-crystal-cyan), var(--dm-crystal-purple)) border-box;
+}
+
+/* Crystal outline secondary button */
+.btn-secondary {
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  padding: 0.75rem 2rem;
+  background:
+    linear-gradient(rgba(10, 14, 39, 0.5), rgba(10, 14, 39, 0.5)) padding-box,
+    linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2)) border-box;
+  color: var(--color-text-main);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  min-height: 44px;
+  backdrop-filter: blur(8px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-secondary:hover {
+  background:
+    linear-gradient(rgba(10, 14, 39, 0.7), rgba(10, 14, 39, 0.7)) padding-box,
+    linear-gradient(135deg, var(--dm-crystal-blue), var(--dm-crystal-purple)) border-box;
+  box-shadow: 0 0 15px rgba(155, 127, 212, 0.2);
+  color: var(--dm-crystal-cyan);
+}
+
+/* Utilities */
+.handwriting {
+  font-family: var(--font-handwriting);
+}
+
+:focus-visible {
+  outline: 2px solid var(--dm-crystal-cyan);
+  outline-offset: 2px;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}

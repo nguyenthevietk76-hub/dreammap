@@ -1,0 +1,163 @@
+.formPage {
+  padding: 8rem 2rem 4rem; /* Top padding for navbar */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  z-index: 10;
+}
+
+.formContainer {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--color-glass-border);
+  padding: 3rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glass);
+  width: 100%;
+  max-width: 600px;
+}
+
+.formContainer h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-gold);
+}
+
+.subtitle {
+  color: var(--color-text-muted);
+  margin-bottom: 2.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formRow {
+  display: flex;
+  gap: 1rem;
+}
+
+.formRow .formGroup {
+  flex: 1;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-text-main);
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background-color: rgba(11, 18, 41, 0.5); /* Glassmorphism input */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-text-main);
+}
+
+select {
+  /* Custom SVG dropdown arrow */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23F4B942%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem top 50%;
+  background-size: 0.65rem auto;
+  padding-right: 2.5rem;
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 12px rgba(244, 185, 66, 0.4), inset 0 0 5px rgba(244, 185, 66, 0.2);
+  background-color: rgba(11, 18, 41, 0.8);
+}
+
+/* Fix option text color in dark mode */
+select option {
+  background-color: var(--color-bg-darker);
+  color: var(--color-text-main);
+}
+
+.checkboxGroup {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.checkboxGroup input[type="checkbox"] {
+  margin-top: 0.25rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: var(--color-gold);
+}
+
+.checkboxGroup label {
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.submitButton {
+  background: linear-gradient(135deg, #F4B942, #E29B16);
+  color: #0B1229;
+  padding: 1rem;
+  border-radius: var(--radius-pill);
+  font-weight: 800;
+  font-size: 1rem;
+  margin-top: 1rem;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(244, 185, 66, 0.3);
+}
+
+.submitButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(244, 185, 66, 0.5);
+}
+
+.submitButton:active {
+  transform: scale(0.98);
+}
+
+.successMessage {
+  background-color: rgba(6, 214, 160, 0.1);
+  color: var(--color-cyan-glow);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(6, 214, 160, 0.3);
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 0 15px rgba(6, 214, 160, 0.1);
+}
