@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import CosmicBackground from './components/CosmicBackground';
 import Navbar from './components/Navbar';
 import LandingPage from './pages/LandingPage';
@@ -14,6 +15,18 @@ import DreamSubmissionPage from './pages/DreamSubmissionPage';
 
 function AppContent() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const isInitialMount = useRef(true);
+
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      if (location.pathname !== '/') {
+        navigate('/', { replace: true });
+      }
+    }
+  }, [navigate, location.pathname]);
+
   const isMapRoute = location.pathname === '/map' || 
                      location.pathname === '/volunteer' || 
                      location.pathname === '/join';
