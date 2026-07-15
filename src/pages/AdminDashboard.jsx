@@ -301,18 +301,36 @@ export default function AdminDashboard() {
           </div>
 
           <div className={styles.headerActions}>
-            {activeTab === 'pending' && pendingDreams.length > 0 && (
-              <button onClick={() => handleExportDreams('pending')} className={styles.exportBtn}>
+            {activeTab === 'pending' && (
+              <button 
+                onClick={() => handleExportDreams('pending')} 
+                className={styles.exportBtn}
+                disabled={pendingDreams.length === 0}
+                style={{ opacity: pendingDreams.length === 0 ? 0.5 : 1, cursor: pendingDreams.length === 0 ? 'not-allowed' : 'pointer' }}
+                title={pendingDreams.length === 0 ? "Không có dữ liệu để xuất" : "Tải danh sách về máy"}
+              >
                 <Download size={16} /> Xuất file Excel (CSV)
               </button>
             )}
-            {activeTab === 'waiting_mentor' && waitingMentorDreams.length > 0 && (
-              <button onClick={() => handleExportDreams('waiting_mentor')} className={styles.exportBtn}>
+            {activeTab === 'waiting_mentor' && (
+              <button 
+                onClick={() => handleExportDreams('waiting_mentor')} 
+                className={styles.exportBtn}
+                disabled={waitingMentorDreams.length === 0}
+                style={{ opacity: waitingMentorDreams.length === 0 ? 0.5 : 1, cursor: waitingMentorDreams.length === 0 ? 'not-allowed' : 'pointer' }}
+                title={waitingMentorDreams.length === 0 ? "Không có dữ liệu để xuất" : "Tải danh sách về máy"}
+              >
                 <Download size={16} /> Xuất file Excel (CSV)
               </button>
             )}
-            {activeTab === 'mentors' && mentors.length > 0 && (
-              <button onClick={handleExportMentors} className={styles.exportBtn}>
+            {activeTab === 'mentors' && (
+              <button 
+                onClick={handleExportMentors} 
+                className={styles.exportBtn}
+                disabled={mentors.length === 0}
+                style={{ opacity: mentors.length === 0 ? 0.5 : 1, cursor: mentors.length === 0 ? 'not-allowed' : 'pointer' }}
+                title={mentors.length === 0 ? "Không có dữ liệu để xuất" : "Tải danh sách về máy"}
+              >
                 <Download size={16} /> Xuất file Excel (CSV)
               </button>
             )}
