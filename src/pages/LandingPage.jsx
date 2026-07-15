@@ -51,7 +51,7 @@ export default function LandingPage() {
 
       {/* Live Stats */}
       <section className={styles.statsSection}>
-        <div className="glass-panel" style={{ display: 'flex', justifyContent: 'space-around', padding: '3rem', maxWidth: '1000px', margin: '0 auto', flexWrap: 'wrap', gap: '2rem' }}>
+        <div className={`${styles.statsContainer} glass-panel`}>
           <div className={styles.statItem}>
             <span className={styles.statNumber}>1,245</span>
             <span className={styles.statLabel}>Ước mơ được thắp sáng</span>
@@ -70,7 +70,7 @@ export default function LandingPage() {
       {/* Placeholder for other sections */}
       <section className={styles.genericSection}>
         <h2>Cách hoạt động</h2>
-        <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center', marginTop: '2rem' }}>
+        <div className={styles.howItWorksGrid}>
           <div className="glass-panel" style={{ padding: '2rem', flex: 1 }}>
             <h3>1. Gửi ước mơ</h3>
             <p>Trẻ em viết hoặc vẽ ước mơ. TNV hỗ trợ tải lên bản đồ.</p>

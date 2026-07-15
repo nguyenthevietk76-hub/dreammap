@@ -210,6 +210,15 @@
   right: -0.5em;
 }
 
+@media (max-width: 768px) {
+  .pullQuote::before {
+    left: -0.1em;
+  }
+  .pullQuote::after {
+    right: -0.1em;
+  }
+}
+
 /* Idea Section (Chương 4) */
 .ideaContent {
   max-width: 800px;
@@ -250,9 +259,15 @@
   border-left: 5px solid #dcdde1; /* paper binding illusion */
 }
 
+@media (max-width: 768px) {
+  .handwritingCard {
+    padding: 1.5rem;
+  }
+}
+
 .handwritingText {
   font-family: 'Itim', cursive;
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
   line-height: 1.5;
   color: #1a1a1a;
   text-align: center;

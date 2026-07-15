@@ -335,6 +335,13 @@
   gap: 1.5rem;
 }
 
+@media (max-width: 1023px) {
+  .securityCard {
+    position: static;
+    margin-top: 1rem;
+  }
+}
+
 .securityHeader {
   display: flex;
   align-items: center;

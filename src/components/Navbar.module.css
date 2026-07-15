@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: rgba(11, 18, 41, 0.6);
+  background: rgba(11, 18, 41, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -17,11 +17,19 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .navContainer {
+    padding: 0.75rem 1rem;
+  }
 }
 
 .cta {
   display: flex;
   align-items: center;
+  gap: 1rem;
 }
 
 .logo {
@@ -30,6 +38,7 @@
   font-weight: 800;
   text-decoration: none;
   color: var(--color-text-main);
+  white-space: nowrap;
 }
 
 .links {
@@ -43,17 +52,98 @@
   font-weight: 500;
   font-size: 0.95rem;
   transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
 .links a:hover {
   color: var(--color-gold);
 }
 
-@media (max-width: 768px) {
+/* Hamburger & Mobile styles */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-text-main);
+  cursor: pointer;
+  padding: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.hamburger:hover {
+  color: var(--color-cyan);
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1000; /* Just below drawer but above page */
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100vh;
+  background: rgba(11, 18, 41, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 6rem 1.5rem 2rem;
+  z-index: 1001; /* Above backdrop */
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  animation: slideIn 0.3s ease-out;
+}
+
+.drawerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.drawerLinks a {
+  text-decoration: none;
+  color: var(--color-text-main);
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  display: block;
+}
+
+.drawerLinks a:hover, .drawerLinks a.activeLink {
+  color: var(--color-cyan);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@media (max-width: 1023px) {
   .links {
     display: none;
   }
-  .cta {
-    display: none;
+  .hamburger {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.25rem;
+  }
+  .drawer {
+    width: 100%;
   }
 }

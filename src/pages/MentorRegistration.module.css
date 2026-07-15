@@ -54,6 +54,12 @@
   box-shadow: var(--shadow-glass);
 }
 
+@media (max-width: 768px) {
+  .aboutSection {
+    padding: 2rem 1.5rem;
+  }
+}
+
 .aboutTitle {
   font-size: 2rem;
   color: var(--dm-crystal-cyan);
@@ -69,6 +75,13 @@
   text-align: center;
 }
 
+@media (max-width: 768px) {
+  .aboutDesc {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
 /* SECTION 3: BENEFITS */
 .sectionTitle {
   text-align: center;
@@ -76,6 +89,13 @@
   color: var(--dm-crystal-white);
   margin-bottom: 3.5rem;
   font-family: var(--font-heading);
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
 }
 
 .benefitsGrid {
@@ -87,6 +107,12 @@
 @media (min-width: 640px) {
   .benefitsGrid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .benefitsGrid {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
