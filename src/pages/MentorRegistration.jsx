@@ -60,8 +60,7 @@ export default function MentorRegistration() {
             name: formData.name,
             field: formData.field || null,
             contact_info: formData.contactInfo,
-            bio: formData.bio || null,
-            status: 'pending'
+            bio: formData.bio || null
           }
         ]);
 
