@@ -185,6 +185,8 @@ export default function AdminDashboard() {
 
   // 9. Render Login Form if Not Logged In
   if (!user) {
+    const isConfigured = import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY;
+
     return (
       <main className={styles.loginContainer}>
         <motion.div 
@@ -196,6 +198,12 @@ export default function AdminDashboard() {
           <p style={{ color: 'var(--color-text-muted)', textAlign: 'center', fontSize: '0.9rem', marginTop: '-0.5rem' }}>
             Đăng nhập để xem danh sách ước mơ & người truyền lửa
           </p>
+
+          {!isConfigured && (
+            <div className={styles.errorAlert} style={{ backgroundColor: 'rgba(244, 185, 66, 0.15)', color: '#e29b16', borderColor: 'rgba(244, 185, 66, 0.3)' }}>
+              <strong>Chú ý:</strong> Chưa cấu hình Supabase. Vui lòng thêm các biến môi trường <code>VITE_SUPABASE_URL</code> và <code>VITE_SUPABASE_ANON_KEY</code> trong cài đặt của Vercel.
+            </div>
+          )}
 
           <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
             <div className={styles.formGroup}>
