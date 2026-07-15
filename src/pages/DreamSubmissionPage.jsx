@@ -1,6 +1,7 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '../lib/supabaseClient';
 import { 
   ShieldCheck, 
   ChevronDown, 
@@ -32,6 +33,8 @@ export default function DreamSubmissionPage() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState(-1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   // Animation variants
   const sectionVariants = {
@@ -43,14 +46,40 @@ export default function DreamSubmissionPage() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setTimeout(() => {
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const { data, error } = await supabase
+        .from('dreams')
+        .insert([
+          {
+            child_name: formData.childName,
+            child_age: formData.childAge || null,
+            child_dream: formData.childDream,
+            child_field: formData.childField || null,
+            adult_role: formData.adultRole,
+            adult_name: formData.adultName,
+            adult_school: formData.adultSchool,
+            adult_contact: formData.adultContact,
+            status: 'pending'
+          }
+        ]);
+
+      if (error) throw error;
+
       setSubmitted(true);
       setTimeout(() => {
         navigate('/map');
       }, 4000);
-    }, 1200);
+    } catch (err) {
+      console.error('Error submitting dream:', err);
+      setSubmitError(err.message || 'Đã xảy ra lỗi khi gửi ước mơ. Vui lòng thử lại.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -286,8 +315,19 @@ export default function DreamSubmissionPage() {
                     />
                   </div>
 
-                  <button type="submit" className="btn-primary" style={{ marginTop: '1.5rem', width: '100%' }}>
-                    {dreamSubmissionContent.form.submitBtn}
+                  {submitError && (
+                    <div style={{ color: '#ff6b6b', marginBottom: '1rem', fontSize: '0.9rem', textAlign: 'center', backgroundColor: 'rgba(255, 107, 107, 0.1)', padding: '0.5rem', borderRadius: '4px' }}>
+                      {submitError}
+                    </div>
+                  )}
+
+                  <button 
+                    type="submit" 
+                    className="btn-primary" 
+                    disabled={isSubmitting} 
+                    style={{ marginTop: '1.5rem', width: '100%', opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? 'not-allowed' : 'pointer' }}
+                  >
+                    {isSubmitting ? 'Đang gửi...' : dreamSubmissionContent.form.submitBtn}
                   </button>
 
                 </form>

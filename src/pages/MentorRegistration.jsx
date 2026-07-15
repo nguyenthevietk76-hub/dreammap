@@ -1,6 +1,7 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import { supabase } from '../lib/supabaseClient';
 import { 
   Award, 
   Clock, 
@@ -33,6 +34,8 @@ export default function MentorRegistration() {
 
   // FAQ state: track which accordion index is open (-1 means all closed)
   const [openFaqIndex, setOpenFaqIndex] = useState(-1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   // Section variants for scroll reveal
   const sectionVariants = {
@@ -44,14 +47,36 @@ export default function MentorRegistration() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setTimeout(() => {
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const { data, error } = await supabase
+        .from('mentors')
+        .insert([
+          {
+            name: formData.name,
+            field: formData.field || null,
+            contact_info: formData.contactInfo,
+            bio: formData.bio || null,
+            status: 'pending'
+          }
+        ]);
+
+      if (error) throw error;
+
       setSubmitted(true);
       setTimeout(() => {
         navigate('/map');
       }, 3000);
-    }, 1000);
+    } catch (err) {
+      console.error('Error submitting mentor registration:', err);
+      setSubmitError(err.message || 'Đã xảy ra lỗi khi gửi đăng ký. Vui lòng thử lại.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -281,8 +306,19 @@ export default function MentorRegistration() {
                   />
                 </div>
 
-                <button type="submit" className="btn-primary" style={{ marginTop: '1.5rem', width: '100%' }}>
-                  Đăng ký ngay
+                {submitError && (
+                  <div style={{ color: '#ff6b6b', marginBottom: '1rem', fontSize: '0.9rem', textAlign: 'center', backgroundColor: 'rgba(255, 107, 107, 0.1)', padding: '0.5rem', borderRadius: '4px' }}>
+                    {submitError}
+                  </div>
+                )}
+
+                <button 
+                  type="submit" 
+                  className="btn-primary" 
+                  disabled={isSubmitting} 
+                  style={{ marginTop: '1.5rem', width: '100%', opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? 'not-allowed' : 'pointer' }}
+                >
+                  {isSubmitting ? 'Đang gửi...' : 'Đăng ký ngay'}
                 </button>
               </form>
             </>
