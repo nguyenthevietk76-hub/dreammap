@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
@@ -53,7 +53,7 @@ export default function MentorRegistration() {
     setSubmitError(null);
 
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('mentors')
         .insert([
           {

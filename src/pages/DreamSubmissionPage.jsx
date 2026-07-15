@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
@@ -8,9 +8,7 @@ import {
   CheckCircle, 
   FileText, 
   UserCheck, 
-  Send, 
-  MapPin, 
-  Sparkles 
+  Send 
 } from 'lucide-react';
 import { dreamSubmissionContent } from '../data/dreamSubmissionContent';
 import { mentorContent } from '../data/mentorContent';
@@ -52,7 +50,7 @@ export default function DreamSubmissionPage() {
     setSubmitError(null);
 
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('dreams')
         .insert([
           {
